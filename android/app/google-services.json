@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "379436412071",
+    "project_id": "ridepair-466010",
+    "storage_bucket": "ridepair-466010.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379436412071:android:2feb67cafaf2d50770ff82",
+        "android_client_info": {
+          "package_name": "com.example.ridetogther"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDovYTU4dEPZnzZXrDAVj30UEwuJhSkO1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
