@@ -88,31 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ? Center(child: CircularProgressIndicator())
           : Padding(
               padding: padding,
-              child: Column(
-                children: [
-                  TextField(
-                    controller: _interestsController,
-                    decoration: InputDecoration(
-                      labelText: "Interests (comma-separated)",
-                      border: OutlineInputBorder(),
-                      hintText: "e.g., music, sports, travel",
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: _saveInterests,
-                    child: Text("Save Interests"),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 50),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    "Current Interests: ${_interests.isEmpty ? 'None' : _interests.join(', ')}",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
-              ),
+              child: Column(children: [SizedBox(height: 16)]),
             ),
     );
   }

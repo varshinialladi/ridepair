@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ridetogther/screens/home_screen.dart';
 
 import 'package:ridetogther/screens/main_page.dart';
 import 'package:ridetogther/screens/registration_screen.dart';
@@ -68,51 +69,12 @@ class _RegistrationScreenState extends State<LoginScreen> {
                   child: const Text("Forgot Password?"),
                 ),
               ),
+
               ElevatedButton(
-                onPressed: () async {
-                  // try {
-                  //   final email = emailTextEditingController.text.trim();
-                  //   final password = passwordTextEditingController.text;
-
-                  //   if (email.isEmpty || password.isEmpty) {
-                  //     ScaffoldMessenger.of(context).showSnackBar(
-                  //       SnackBar(
-                  //         content: Text('Email and password cannot be empty'),
-                  //       ),
-                  //     );
-                  //     return;
-                  //   }
-
-                  //   Firebase login
-                  //   final userCredential = await FirebaseAuth.instance
-                  //       .signInWithEmailAndPassword(
-                  //         email: email,
-                  //         password: password,
-                  //       );
-
-                  //   if (userCredential.user != null) {
-                  //     // Login success
-                  // Navigator.of(context).pushReplacement(
-                  //   MaterialPageRoute(builder: (context) => MainPage()),
-                  // );
-                  //   }
-                  // }
-
-                  // on FirebaseAuthException catch (e) {
-                  //   // Handle error
-                  //   String message = '';
-                  //   if (e.code == 'user-not-found') {
-                  //     message = 'No user found for this email.';
-                  //   } else if (e.code == 'wrong-password') {
-                  //     message = 'Wrong password.';
-                  //   } else {
-                  //     message = e.message ?? 'Login failed.';
-                  //   }
-
-                  //   ScaffoldMessenger.of(
-                  //     context,
-                  //   ).showSnackBar(SnackBar(content: Text(message)));
-                  // }
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                 child: const Text(
@@ -121,6 +83,72 @@ class _RegistrationScreenState extends State<LoginScreen> {
                 ),
               ),
 
+              // ElevatedButton(
+              //   onPressed: () {
+              //     ElevatedButton(
+              //       onPressed: () => Navigator.of(context).pushReplacement(
+              //         MaterialPageRoute(builder: (context) => HomeScreen()),
+              //       ),
+              //       child: Text('Register'),
+              //     );
+              // )
+              //   style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+              //   child: const Text(
+              //     "Login",
+              //     style: TextStyle(color: Colors.white),
+              //   ),
+              // ),
+
+              // try {
+              //   final email = emailTextEditingController.text.trim();
+              //   final password = passwordTextEditingController.text;
+
+              //   if (email.isEmpty || password.isEmpty) {
+              //     ScaffoldMessenger.of(context).showSnackBar(
+              //       SnackBar(
+              //         content: Text('Email and password cannot be empty'),
+              //       ),
+              //     );
+              //     return;
+              //   }
+
+              //   Firebase login
+              //   final userCredential = await FirebaseAuth.instance
+              //       .signInWithEmailAndPassword(
+              //         email: email,
+              //         password: password,
+              //       );
+
+              //   if (userCredential.user != null) {
+              //     // Login success
+              // Navigator.of(context).pushReplacement(
+              //   MaterialPageRoute(builder: (context) => MainPage()),
+              // );
+              //   }
+              // }
+
+              // on FirebaseAuthException catch (e) {
+              //   // Handle error
+              //   String message = '';
+              //   if (e.code == 'user-not-found') {
+              //     message = 'No user found for this email.';
+              //   } else if (e.code == 'wrong-password') {
+              //     message = 'Wrong password.';
+              //   } else {
+              //     message = e.message ?? 'Login failed.';
+              //   }
+
+              //   ScaffoldMessenger.of(
+              //     context,
+              //   ).showSnackBar(SnackBar(content: Text(message)));
+              // }
+              // },
+              // style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+              // child: const Text(
+              //   "Login",
+              //   style: TextStyle(color: Colors.white),
+              //   ),
+              // ),
               const SizedBox(height: 20),
               const Center(child: Text("Or Login with")),
               const SizedBox(height: 20),

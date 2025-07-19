@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied || 
+    if (permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
       permission = await Geolocator.requestPermission();
       if (permission != LocationPermission.whileInUse &&
@@ -59,8 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ride Together"),
+        title: Text("RideToGether"),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black),
         actions: [
+          
           IconButton(
             icon: Icon(Icons.person),
             onPressed: () => Navigator.push(
@@ -72,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Stack(
         children: [
+          // 🗺️ Google Map
           GoogleMap(
             initialCameraPosition: CameraPosition(
               target: _currentPosition,
@@ -85,67 +92,125 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             },
-            myLocationEnabled: true, // ✅ show blue dot
+            myLocationEnabled: true,
             myLocationButtonEnabled: true,
             zoomControlsEnabled: false,
           ),
-          Center(
+
+        
+          // Positioned(
+          //   top: 100,
+          //   left: 20,
+          //   right: 20,
+          //   child: Container(
+          //     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+          //     decoration: BoxDecoration(
+          //       color: Colors.white.withOpacity(0.8),
+          //       borderRadius: BorderRadius.circular(12),
+          //     ),
+              
+          //   ),
+          // ),
+
+      
+          Positioned(
+            bottom: 150,
+            right: 16,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.8),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    user != null
-                        ? "Welcome, ${user.displayName ?? 'User'}"
-                        : "Welcome to Ride Together",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(height: 24),
-                ElevatedButton(
+                FloatingActionButton.extended(
+                  heroTag: 'host',
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (_) => HostRideScreen()),
                   ),
-                  child: Text("Host a Ride"),
-                  style: ElevatedButton.styleFrom(minimumSize: Size(200, 50)),
+                  label: Text("Host Ride",style: TextStyle(fontSize: 14,color: Colors.black),),
+                  icon: Icon(Icons.add_road,color: Colors.black,),
+                  backgroundColor: Colors.white,
                 ),
-                SizedBox(height: 16),
-                ElevatedButton(
+                SizedBox(height: 12),
+                FloatingActionButton.extended(
+                  heroTag: 'join',
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (_) => JoinRideScreen()),
                   ),
-                  child: Text("Join a Ride"),
-                  style: ElevatedButton.styleFrom(minimumSize: Size(200, 50)),
+
+
+                  label: Text("Join Ride",style: TextStyle(fontSize: 14,color: Colors.black),),
+                  icon: Icon(Icons.search,color: Colors.black,),
+                  backgroundColor: Colors.white,
                 ),
-                SizedBox(height: 16),
-                ElevatedButton(
+                SizedBox(height: 12),
+                FloatingActionButton.extended(
+                  heroTag: 'track',
                   onPressed: () {
                     if (user != null) {
-                      // Track ride logic
+                      // TODO: Navigate to track screen
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("Please log in to track a ride")),
                       );
                     }
                   },
-                  child: Text("Track a Ride"),
-                  // style: 
-                  
-                  
-                  // ElevatedButton.styleFrom(minimumSize: Size(200, 50)),
+                  label: Text("Instant Ride",style: TextStyle(fontSize: 14,color: Colors.black),),
+                  icon: Icon(Icons.gps_fixed,color: Colors.black,),
+                  backgroundColor: Colors.white,
                 ),
               ],
             ),
           ),
+
+
+          Positioned(
+            bottom: 20,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
+                  ],
+                ),
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _vehicleBox(icon: Icons.directions_car, label: "Car"),
+                    _vehicleBox(icon: Icons.pedal_bike, label: "Bike"),
+                    _vehicleBox(icon: Icons.two_wheeler, label: "Auto"),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _vehicleBox({required IconData icon, required String label}) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          height: 60,
+          width: 60,
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(icon, size: 36, color: Colors.black),
+          // To replace with image later:
+          // child: Image.asset('assets/car.png', fit: BoxFit.contain),
+        ),
+        SizedBox(height: 6),
+        Text(label, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+      ],
     );
   }
 }
